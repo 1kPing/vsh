@@ -8,8 +8,8 @@ cd
 # Update system and install repo packages
 sudo xbps-install -yu xbps 
 sudo xbps-install -Syu void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
-echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland_mirror.conf
-echo 'repository=https://github.com/index-0/librewolf-void/releases/latest/download/' > /etc/xbps.d/20-librewolf.conf
+echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hypr-mirror.conf
+echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu base-devel rustup
 rustup default stable
 
