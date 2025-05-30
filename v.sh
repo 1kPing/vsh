@@ -128,6 +128,6 @@ rm -r graphite-gtk-theme
 rm LICENSE
 rm README.md
 rm NOTES
-rm a.sh
+rm v.sh
 
 echo "Finished, reboot your computer"
