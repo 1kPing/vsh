@@ -14,7 +14,7 @@ sudo xbps-install -Syu base-devel rustup
 rustup default stable
 
 # Install packages
-packages="ayatana-appindicator3-devel btop blender cairo-devel cmake fastfetch font-awesome fontconfig galculator gimp gettext git github-cli gstreamer1.0-devel gtk3 gtk-engine-murrine gtk-layer-shell hyprcursor hypridle hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner hyprland-devel hyprland-protocols libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjxl-devel libjpeg-turbo-devel libnotify-devel libseat-devel libwebp-devel libxkbcommon-devel libreoffice librewolf mako mpv ninja neovim pango-devel pavucontrol perl pipewire prismlauncher qbittorrent re2-devel slurp steam starship tomlplusplus unzip wayland-devel wayland-protocols wev wl-clipboard wofi wine-gecko wine-mono xdg-desktop-portal-hyprland yazi zsh"
+packages="libayatana-appindicator-devel btop blender cairo-devel cmake fastfetch font-awesome fontconfig galculator gimp gettext git github-cli gstreamer1.0-devel gtk3 gtk-engine-murrine gtk-layer-shell hyprcursor hypridle hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner hyprland-devel hyprland-protocols libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjxl-devel libjpeg-turbo-devel libnotify-devel libseat-devel libwebp-devel libxkbcommon-devel libreoffice librewolf mako mpv ninja neovim pango-devel pavucontrol perl pipewire prismlauncher qbittorrent re2-devel slurp steam starship tomlplusplus unzip wayland-devel wayland-protocols wev wl-clipboard wofi wine-gecko wine-mono xdg-desktop-portal-hyprland yazi zsh"
 sudo xbps-install -y $packages
 
 # Hyprsunset
@@ -43,7 +43,7 @@ cd ..
 rm -rf alarm-clock
 
 # Hyprshot
-git clone https://github.com/shixue/Hyprshot
+git clone https://github.com/Gustash/Hyprshot
 cd Hyprshot
 chmod +x hyprshot.sh
 sudo mv hyprshot.sh /usr/local/bin/hyprshot
