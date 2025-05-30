@@ -12,7 +12,7 @@ echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repos
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu base-devel curl
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
+. "$HOME/.cargo/env"
 
 # Install packages
 packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python-clickgen python3 qbittorrent re2-devel sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
