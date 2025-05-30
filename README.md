@@ -8,6 +8,7 @@ Make sure you have dash installed to be able to run this.
 ```sh
 sudo xbps-install -S dash
 ```
+Lastly, make sure that the ```vsh``` directory is absolutely in the ```~``` directory, or bad stuff might happen.
 ### To run the script:
 ```sh
 ~/vsh/v.sh
