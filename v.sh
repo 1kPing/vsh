@@ -16,7 +16,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
+packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel lightdm lightdm-gtk-greeter mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
 sudo xbps-install -y $packages
 
 # Hyprsunset
@@ -96,12 +96,8 @@ xdg-settings set default-web-browser librewolf.desktop
 # Enable greetd service
 sudo ln -s /etc/sv/greetd /var/service/
 
-# Configure greetd to use tuigreet
-echo "[terminal]
-vt = 1
-[default_session]
-command = \"tuigreet\"
-user = \"greeter\"" | sudo tee /etc/greetd/config.toml
+# Enable LightDM
+sudo ln -s /etc/sv/lightdm /var/service/
 
 # Install and set up GTK theme
 cd graphite-gtk-theme
