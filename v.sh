@@ -16,7 +16,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel lightdm lightdm-gtk-greeter mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
+packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel lightdm lightdm-gtk-greeter mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
 sudo xbps-install -y $packages
 
 # Hyprsunset
@@ -28,13 +28,6 @@ sudo cmake --install build
 cd ..
 rm -rf hyprsunset
 
-# ttf-cascadia-code
-wget https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
-unzip CascadiaCode-2404.23.zip -d /tmp/cascadia
-sudo mv /tmp/cascadia/ttf/* /usr/share/fonts/
-fc-cache -f
-rm -rf /tmp/cascadia CascadiaCode-2404.23.zip
-
 # alarm-clock-applet
 git clone https://github.com/alarm-clock-applet/alarm-clock
 cd alarm-clock
@@ -45,13 +38,9 @@ cd ..
 rm -rf alarm-clock
 
 # Hyprshot
-git clone https://github.com/Gustash/Hyprshot
-cd Hyprshot
-chmod +x hyprshot.sh
-sudo mv hyprshot.sh /usr/local/bin/hyprshot
-cd ..
-rm -rf Hyprshot
-
+git clone https://github.com/Gustash/hyprshot.git Hyprshot
+ln -s $(pwd)/Hyprshot/hyprshot $HOME/.local/bin
+chmod +x Hyprshot/hyprshot
 # Bibata-cursor-theme
 git clone https://github.com/ful1e5/Bibata_Cursor
 cd Bibata_Cursor
