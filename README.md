@@ -4,11 +4,7 @@ Do not run the script as root/sudo! Only use sudo when the script itself prompts
 
 This script is intended for use on a fresh and minimal installation of Void Linux, before the ```~/.config``` and ```~/Pictures``` directories are created.
 
-Make sure you have dash installed to be able to run this.
-```sh
-sudo xbps-install -S dash
-```
-Lastly, make sure that the ```vsh``` directory is absolutely in the ```~``` directory, or bad stuff might happen.
+Make sure that the ```vsh``` directory is cloned under the ```~``` directory, or bad stuff might happen.
 ### To run the script:
 ```sh
 ~/vsh/v.sh
