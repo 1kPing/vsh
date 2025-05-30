@@ -10,7 +10,9 @@ sudo xbps-install -yu xbps
 sudo xbps-install -Syu void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hypr-mirror.conf
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
-sudo xbps-install -Syu base-devel rustup
+sudo xbps-install -Syu base-devel curl
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
 rustup default stable
 
 # Install packages
