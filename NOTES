@@ -1,0 +1,8 @@
+## packages from unofficial repos:
+librewolf hyprwayland-scanner tomlplusplus sdbus-cpp hyprutils hyprlang hyprcursor hyprlock hypridle hyprpaper hyprland-protocols hyprland-devel hyprland xdg-desktop-portal-hyprland
+
+## dependencies
+cmake ninja gcc wayland-devel wayland-protocols pango-devel cairo-devel libglvnd-devel libjpeg-turbo-devel libwebp-devel libjxl-devel libdrm-devel libgbm-devel libinput-devel libseat-devel libxkbcommon-devel re2-devel libnotify-devel gstreamer1.0-devel libayatana-appindicator3-devel gettext perl gzip python3 python-clickgen grim slurp jq wl-clipboard gtk3 gtk-layer-shell unzip fontconfig
+
+## official packages
+blender btop eog fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine libreoffice mako mpv neovim nwg-look pavucontrol pipewire PrismLauncher qbittorrent Signal-Desktop starship steam tuigreet ufw Waybar wev wine-gecko wine-mono wofi yazi zsh
