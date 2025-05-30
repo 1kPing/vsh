@@ -78,16 +78,16 @@ if [ "$answer" = "y" ]; then
     flatpak install flathub com.discordapp.Discord -y
 fi
 
-echo "Do you want to install amd microcode? (y/n)"
+echo "Do you want to install amd firmware? (y/n)"
 read answer
 if [ "$answer" = "y" ]; then
-    sudo xbps-install -y amd-ucode
+    sudo xbps-install -y linux-firmware-amd
 fi
 
 echo "Do you want to install nvidia stuff? (y/n)"
 read answer
 if [ "$answer" = "y" ]; then
-    sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit nvidia nvidia-libs-32bit
+    sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit nvidia nvidia-libs-32bit linux-firmware-nvidia
 fi
 
 # Set default web browser
