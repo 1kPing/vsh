@@ -11,11 +11,12 @@ sudo xbps-install -Syu void-repo-nonfree void-repo-multilib void-repo-multilib-n
 echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hypr-mirror.conf
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu base-devel curl git
+sudo xbps-install -Syu
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
+packages="blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus tuigreet ufw unzip Waybar wayland-devel wayland-protocols wev wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
 sudo xbps-install -y $packages
 
 # Hyprsunset
