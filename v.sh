@@ -18,7 +18,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages=""
+packages="PrismLauncher Signal-Desktop Waybar blender btop fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire qbittorrent sddm starship steam ufw wev wine wine-gecko wine-mono wofi yazi zsh"
 sudo xbps-install -Syu $packages
 
 sudo mv ~/eww /bin
