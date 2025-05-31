@@ -1,0 +1,156 @@
+# Monitor configuration
+output HDMI-1 resolution 1920x1080@60Hz position 0,0 scale 1
+output DP-1 resolution 1360x768@60Hz position 0,120 scale 1
+
+# Variables for applications
+set $terminal foot
+set $fileManager pcmanfm
+set $menu wofi --show drun
+set $textEditor foot nvim
+
+# Startup applications
+exec waybar
+exec hyprpaper
+exec signal-desktop
+exec alarm-clock-applet -h
+exec ~/eww/target/release/eww daemon
+exec_always --no-startup-id librewolf --name workspace-3
+
+# Input configuration
+input * {
+    xkb_layout us
+    xkb_variant ""
+    xkb_model ""
+    xkb_options ""
+    xkb_rules ""
+
+    pointer_accel 0
+}
+
+input type:touchpad {
+    natural_scroll disabled
+}
+
+# Keybindings
+set $Mod1 Mod4  # SUPER key
+set $Mod2 Mod1  # Alt key
+
+bindsym $Mod1+Return exec $terminal
+bindsym $Mod1+space exec $menu
+bindsym $Mod1+f exec $fileManager
+bindsym $Mod1+e exec $textEditor
+bindsym $Mod1+Escape exit
+bindsym $Mod1+c kill
+bindsym $Mod1+s exec librewolf
+bindsym $Mod1+d exec discord
+bindsym $Mod1+g exec github-desktop
+bindsym $Mod1+p exec prismlauncher
+bindsym $Mod1+r exec rnote
+bindsym $Mod1+b exec foot btop
+bindsym $Mod1+y exec foot yazi
+bindsym $Mod1+a exec alarm-clock-applet -s
+bindsym $Mod1+F1 exec killall librewolf
+bindsym $Mod1+F2 exec killall Discord
+bindsym $Mod1+F3 exec killall steam
+bindsym $Mod1+F8 exec pactl set-sink-default alsa_output.usb-SteelSeries_Arctis_Nova_7-00.analog-stereo
+bindsym $Mod1+F9 exec pactl set-sink-default alsa_output.usb-1130_USB_AUDIO-00.iec958-stereo
+bindsym $Mod1+Print exec grimshot --area
+bindsym $Mod1+equal exec hyprsunset -t 1000
+bindsym $Mod1+minus exec killall hyprsunset
+bindsym $Mod1+backslash exec swaylock
+bindsym $Mod1+h focus left
+bindsym $Mod1+l focus right
+bindsym $Mod1+j focus up
+bindsym $Mod1+k focus down
+bindsym $Mod1+Left focus left
+bindsym $Mod1+Right focus right
+bindsym $Mod1+Up focus up
+bindsym $Mod1+Down focus down
+bindsym $Mod1+1 workspace 1
+bindsym $Mod1+2 workspace 2
+bindsym $Mod1+3 workspace 3
+bindsym $Mod1+4 workspace 4
+bindsym $Mod1+5 workspace 5
+bindsym $Mod1+6 workspace 6
+bindsym $Mod1+7 workspace 7
+bindsym $Mod1+8 workspace 8
+bindsym $Mod1+9 workspace 9
+bindsym $Mod1+0 workspace 10
+bindsym $Mod1+Shift+1 move container to workspace 1
+bindsym $Mod1+Shift+2 move container to workspace 2
+bindsym $Mod1+Shift+3 move container to workspace 3
+bindsym $Mod1+Shift+4 move container to workspace 4
+bindsym $Mod1+Shift+5 move container to workspace 5
+bindsym $Mod1+Shift+6 move container to workspace 6
+bindsym $Mod1+Shift+7 move container to workspace 7
+bindsym $Mod1+Shift+8 move container to workspace 8
+bindsym $Mod1+Shift+9 move container to workspace 9
+bindsym $Mod1+Shift+0 move container to workspace 10
+bindsym $Mod1+Ctrl+MouseDown workspace next
+bindsym $Mod1+Ctrl+MouseUp workspace prev
+bindsym --whole-window $Mod1+button1 move container
+bindsym --whole-window $Mod1+button3 resize
+
+bindsym $Mod2+g exec galculator
+bindsym $Mod2+f floating toggle
+
+# Media and brightness controls
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+
+# Environment variables
+set $XDG_SESSION_TYPE wayland
+set $XDG_CURRENT_DESKTOP sway
+set $XDG_SESSION_DESKTOP sway
+set $SDL_VIDEODRIVER wayland
+set $QT_QPA_PLATFORM wayland
+set $XCURSOR_THEME Bibata-Original-Classic
+set $XCURSOR_SIZE 16
+set $WLR_NO_HARDWARE_CURSORS 1
+set $LIBVA_DRIVER_NAME nvidia
+set $GBM_BACKEND nvidia-drm
+set $GLX_VENDOR_LIBRARY_NAME nvidia
+set $GL_GSYNC_ALLOWED 1
+set $GL_VRR_ALLOWED 0
+
+# General settings
+gaps inner 0
+gaps outer 0
+smart_gaps off
+default_border none
+default_floating_border none
+
+# Window rules
+for_window [class="galculator"] floating enable
+for_window [shell="xwayland" floating="true" fullscreen="false" pinned="false"] focus disable
+for_window [workspace="tv1"] border none
+for_window [workspace="tv1"] gaps inner 0
+for_window [workspace="tv1"] gaps outer 0
+for_window [workspace="1"] border none
+for_window [workspace="1"] gaps inner 0
+for_window [workspace="1"] gaps outer 0
+
+# Layout settings
+default_layout tiling
+smart_optimize on
+
+# Floating modifier
+floating_modifier $Mod1
+
+# Focus behavior
+focus_follows_mouse yes
+mouse_warping container
+
+# Disable maximize event suppression (Sway equivalent)
+for_window [class=".*"] inhibit_fullscreen_request
+
+# XWayland settings
+xwayland enable
