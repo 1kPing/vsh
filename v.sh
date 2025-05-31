@@ -16,7 +16,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages="dbus blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel make mako mpv neovim ninja nwg-look pam-devel pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus ufw unzip Waybar wayland-devel wayland-protocols wev wget wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zig zsh"
+packages=""
 sudo xbps-install -Syu $packages
 
 echo "Do you want to install discord with flatpak? (y/n)"
@@ -37,8 +37,6 @@ fi
 xdg-settings set default-web-browser librewolf.desktop
 
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
-
-mkdir ~/.icons
 
 git clone https://github.com/jmattheis/gruvbox-dark-icons-gtk ~/.icons/gruvbox-dark-icons-gtk
 
@@ -65,8 +63,7 @@ rm ~/v.sh
 
 # Startup services
 
-
-
+sudo ln -s /etc/sv/sddm /var/service
 sudo ln -s /etc/sv/dbus /var/service
 
 
