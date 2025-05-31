@@ -16,7 +16,7 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop Waybar blender btop fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire qbittorrent sassc sddm starship steam ufw wev wine wine-gecko wine-mono wofi xorg-minimal yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop Waybar alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine hyprland hyprland-protocols imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc sddm seatd starship steam ufw wev wine wine-gecko wine-mono wofi xdg-desktop-portal-hyprland hyprlock hyprpaper xorg yazi zsh"
 sudo xbps-install -Syu $packages
 
 sudo mv ~/eww /bin
@@ -40,6 +40,11 @@ fi
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
+sudo mkdir -p /etc/alsa/conf.d
+sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+echo "autospawn = no" | sudo tee /etc/pulse/client.conf
+sudo usermod -aG _seatd $USER
 
 # Clean up
 rm -rf ~/.git
@@ -51,6 +56,8 @@ rm ~/v.sh
 
 # Startup services
 sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/polkitd /var/service
+sudo ln -s /etc/sv/seatd /var/service
 sudo ln -s /etc/sv/sddm /var/service
 
 echo "finished, reboot your computer"
