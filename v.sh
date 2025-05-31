@@ -10,8 +10,8 @@ cd
 
 # Update system and install repo packages
 sudo xbps-install -yu xbps 
-sudo xbps-install -Syu void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
-echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hypr-mirror.conf
+sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-nonfree
+echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland-mirror.conf
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -20,6 +20,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Install packages
 packages=""
 sudo xbps-install -Syu $packages
+
+sudo mv ~/eww /bin
+sudo mv ~/alarm-clock-applet /bin
 
 echo "Do you want to install discord with flatpak? (y/n)"
 read answer
@@ -43,8 +46,6 @@ git clone https://github.com/jmattheis/gruvbox-dark-icons-gtk ~/.icons/gruvbox-d
 
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
-
-sudo mv ~/eww /bin
 
 # Clean up
 rm -rf ~/.git
