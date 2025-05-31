@@ -1,6 +1,8 @@
 #!/bin/dash
 
-# Change to the vsh directory and move its contents to home
+sudo mkdir /home/old~
+sudo mv -r ~/* /home/old~
+sudo mv -r /home/old~/vsh ~
 cd ~/vsh
 find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
 cd
@@ -10,7 +12,7 @@ sudo xbps-install -yu xbps
 sudo xbps-install -Syu void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hypr-mirror.conf
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
-sudo xbps-install -Syu base-devel curl git
+sudo xbps-install -Syu base-devel git
 sudo xbps-install -Syu
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
@@ -33,7 +35,6 @@ if [ "$answer" = "y" ]; then
 fi
 
 # Configuration
-
 xdg-settings set default-web-browser librewolf.desktop
 
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
@@ -62,9 +63,7 @@ rm ~/NOTES
 rm ~/v.sh
 
 # Startup services
-
 sudo ln -s /etc/sv/sddm /var/service
 sudo ln -s /etc/sv/dbus /var/service
 
-
-echo "Finished, reboot your computer"
+echo "Finished, reboot your computer [and your old ~ was backed up to /home/old~]"
