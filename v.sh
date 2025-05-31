@@ -16,9 +16,10 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop Waybar alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine hyprland hyprland-protocols hyprlock hyprpaper imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xdg-desktop-portal-hyprland yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop Waybar alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine hyprland hyprland-protocols hyprlock hyprpaper imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc seatd starship steam sway ufw wev wine wine-gecko wine-mono wofi xdg-desktop-portal-hyprland yazi zsh"
 sudo xbps-install -Syu $packages
 
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh"
 sudo mv ~/eww /bin
 sudo mv ~/alarm-clock-applet /bin
 sudo mv ~/theclicker /bin
