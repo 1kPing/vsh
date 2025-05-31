@@ -16,64 +16,14 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 # Install packages
-packages="dbus blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel lightdm lightdm-gtk-greeter mako mpv neovim ninja nwg-look pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus ufw unzip Waybar wayland-devel wayland-protocols wev wget wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zsh"
-sudo xbps-install -y $packages
+packages="dbus blender btop cairo-devel cmake eog fastfetch font-awesome fontconfig foot galculator gcc gettext gimp gnome-keyring gnome-themes-extra grim gstreamer1-devel gtk+3 gtk-engine-murrine gtk-layer-shell gzip hyprcursor hypridle hyprland hyprland-devel hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner jq libayatana-appindicator-devel libdrm-devel libgbm-devel libglvnd-devel libinput-devel libjpeg-turbo-devel libjxl-devel libnotify-devel libreoffice librewolf libseat-devel libwebp-devel libxkbcommon-devel make mako mpv neovim ninja nwg-look pam-devel pango-devel pavucontrol perl pipewire PrismLauncher python3 qbittorrent re2-devel sassc sdbus-cpp Signal-Desktop slurp starship steam tomlplusplus ufw unzip Waybar wayland-devel wayland-protocols wev wget wine-gecko wine-mono wl-clipboard wofi xdg-desktop-portal-hyprland yazi zig zsh"
+sudo xbps-install -Syu $packages
 
-# Enable dbus
-sudo ln -s /etc/sv/dbus /var/service
-
-# Hyprsunset
-git clone https://github.com/hyprwm/hyprsunset
-cd hyprsunset
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-sudo cmake --install build
-cd ..
-rm -rf hyprsunset
-
-# alarm-clock-applet
-git clone https://github.com/alarm-clock-applet/alarm-clock
-cd alarm-clock
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-sudo cmake --install build
-cd ..
-rm -rf alarm-clock
-
-# Hyprshot
-git clone https://github.com/Gustash/hyprshot.git Hyprshot
-ln -s $(pwd)/Hyprshot/hyprshot $HOME/.local/bin
-chmod +x Hyprshot/hyprshot
-# Bibata-cursor-theme
-git clone https://github.com/ful1e5/Bibata_Cursor
-cd Bibata_Cursor
-make build
-sudo make install
-cd ..
-rm -rf Bibata_Cursor
-
-# Gruvbox-dark-icons-gtk
-git clone https://github.com/jmattheis/gruvbox-dark-icons-gtk
-cd gruvbox-dark-icons-gtk
-mkdir -p ~/.icons
-cp -r gruvbox-dark-icons-gtk ~/.icons/
-cd ..
-rm -rf gruvbox-dark-icons-gtk
-
-###
-
-echo "Do you want to install flatpak, flathub, and discord? (y/n)"
+echo "Do you want to install discord with flatpak? (y/n)"
 read answer
 if [ "$answer" = "y" ]; then
     sudo xbps-install -y flatpak
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install flathub com.discordapp.Discord -y
-fi
-
-echo "Do you want to install amd firmware? (y/n)"
-read answer
-if [ "$answer" = "y" ]; then
-    sudo xbps-install -y linux-firmware-amd
+    flatpak install com.discordapp.Discord -y
 fi
 
 echo "Do you want to install nvidia stuff? (y/n)"
@@ -82,37 +32,42 @@ if [ "$answer" = "y" ]; then
     sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit nvidia nvidia-libs-32bit linux-firmware-nvidia
 fi
 
-# Set default web browser
+# Configuration
+
 xdg-settings set default-web-browser librewolf.desktop
 
-# Enable LightDM
-sudo ln -s /etc/sv/lightdm /var/service/
+~/graphite-gtk-theme/install.sh --tweaks rimless black
 
-# Install and set up GTK theme
-cd graphite-gtk-theme
-./install.sh --tweaks rimless black
-cd
+mkdir ~/.icons
 
-# Set GTK and icon themes
+git clone https://github.com/jmattheis/gruvbox-dark-icons-gtk ~/.icons/gruvbox-dark-icons-gtk
+
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
 
-# Install eww
 git clone https://github.com/elkowar/eww
-cd eww
+cd ~/eww
 cargo build --release --no-default-features --features=wayland
-chmod +x target/release/eww
-mv target/release/eww ~/bin/
-cd ..
-rm -rf eww
+chmod +x ~/eww/target/release/eww
+mkdir ~/bin
+mv ~/eww/target/release/eww ~/bin
+cd
+rm -rf ~/eww
 
 # Clean up
-rm -rf .git
-rm -r vsh
-rm -r graphite-gtk-theme
-rm LICENSE
-rm README.md
-rm NOTES
-rm v.sh
+rm -rf ~/.git
+rm -r ~/vsh
+rm -r ~/graphite-gtk-theme
+rm ~/LICENSE
+rm ~/README.md
+rm ~/NOTES
+rm ~/v.sh
+
+# Startup services
+
+
+
+sudo ln -s /etc/sv/dbus /var/service
+
 
 echo "Finished, reboot your computer"
