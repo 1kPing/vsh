@@ -14,8 +14,6 @@ sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-n
 echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland-mirror.conf
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
 
 # Install packages
 packages="PrismLauncher Signal-Desktop Waybar blender btop fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire qbittorrent sddm starship steam ufw wev wine wine-gecko wine-mono wofi yazi zsh"
