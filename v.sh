@@ -43,8 +43,6 @@ xdg-settings set default-web-browser librewolf.desktop
 
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 
-git clone https://github.com/jmattheis/gruvbox-dark-icons-gtk ~/.icons/gruvbox-dark-icons-gtk
-
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
 
