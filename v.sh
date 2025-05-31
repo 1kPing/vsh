@@ -39,10 +39,7 @@ if [ "$answer" = "y" ]; then
 fi
 
 # Configuration
-xdg-settings set default-web-browser librewolf.desktop
-
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
-
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
 
@@ -52,7 +49,6 @@ rm -r ~/vsh
 rm -r ~/graphite-gtk-theme
 rm ~/LICENSE
 rm ~/README.md
-rm ~/NOTES
 rm ~/v.sh
 
 # Startup services
