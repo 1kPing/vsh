@@ -16,7 +16,7 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="PrismLauncher Signal-Desktop Waybar blender btop fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire qbittorrent sassc sddm starship steam ufw wev wine wine-gecko wine-mono wofi yazi zsh"
+packages="PrismLauncher Signal-Desktop Waybar blender btop fastfetch font-awesome foot galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire qbittorrent sassc sddm starship steam ufw wev wine wine-gecko wine-mono wofi xorg-minimal yazi zsh"
 sudo xbps-install -Syu $packages
 
 sudo mv ~/eww /bin
