@@ -7,7 +7,7 @@ sudo mv -r /home/old~/vsh ~
 cd ~/vsh
 find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
 cd
-
+sleep 3
 # Update system and install repo packages
 sudo xbps-install -yu xbps 
 sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-nonfree
