@@ -2,8 +2,8 @@
 
 echo "~ is being backed up to /home/old~"
 sudo mkdir /home/old~
-sudo mv -r ~/* /home/old~
-sudo mv -r /home/old~/vsh ~
+sudo mv ~/* /home/old~
+sudo mv /home/old~/vsh ~
 cd ~/vsh
 find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
 cd
