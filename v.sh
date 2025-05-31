@@ -23,6 +23,7 @@ sudo xbps-install -Syu $packages
 
 sudo mv ~/eww /bin
 sudo mv ~/alarm-clock-applet /bin
+sudo mv ~/theclicker /bin
 
 echo "Do you want to install discord with flatpak? (y/n)"
 read answer
