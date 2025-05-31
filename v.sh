@@ -16,7 +16,7 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop Waybar alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine hyprland hyprland-protocols imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc sddm seatd starship steam ufw wev wine wine-gecko wine-mono wofi xdg-desktop-portal-hyprland hyprlock hyprpaper xorg yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop Waybar alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine hyprland hyprland-protocols imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc seatd starship steam tuigreet ufw wev wine wine-gecko wine-mono wofi xdg-desktop-portal-hyprland hyprlock hyprpaper yazi zsh"
 sudo xbps-install -Syu $packages
 
 sudo mv ~/eww /bin
@@ -58,6 +58,5 @@ rm ~/v.sh
 sudo ln -s /etc/sv/dbus /var/service
 sudo ln -s /etc/sv/polkitd /var/service
 sudo ln -s /etc/sv/seatd /var/service
-sudo ln -s /etc/sv/sddm /var/service
 
 echo "finished, reboot your computer"
