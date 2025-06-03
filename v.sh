@@ -32,6 +32,7 @@ else
     sudo find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
     cd
     sudo rmdir "$target_dir"/vsh
+    sudo mv ~/TTF /usr/share/fonts
     rm -rf ~/.git
     rm ~/LICENSE
     rm ~/README.md
@@ -44,25 +45,24 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"
 done
 
 sudo ln -s /etc/sv/dbus /var/service
-sudo ln -s /etc/sv/seatd /var/service
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
 sudo mv ~/binaries/* /bin
 mv ~/GithubDesktop* /bin/github
 
-## echo "Do you want to install hypr stuff? (y/n)"
-## read answer
-## if [ "$answer" = "y" ]; then
-##     echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland-mirror.conf
-##     sudo xbps-install -Syu hyprland hyprland-protocols hyprlock hyprpaper xdg-desktop-portal-hyprland
-## fi
+echo "Do you want to install hypr stuff? (y/n)"
+read answer
+if [ "$answer" = "y" ]; then
+    echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland-mirror.conf
+    sudo xbps-install -Syu hyprland hyprland-protocols hyprlock hyprpaper xdg-desktop-portal-hyprland
+fi
 
 echo "Do you want to install discord with flatpak? (y/n)"
 read answer
@@ -79,6 +79,8 @@ if [ "$answer" = "y" ]; then
 fi
 
 xdg-settings set default-web-browser librewolf.desktop
+xdg-mime default imv.desktop image/*
+xdg-mime default mpv.desktop video/*
 
 sudo ~/graphite-gtk-theme/other/grub2/install.sh -b
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
@@ -97,3 +99,5 @@ rm ~/v.sh
 sudo xbps-install -Syu
 
 echo "finished, reboot your computer"
+
+exit 0
