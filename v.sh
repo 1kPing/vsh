@@ -1,13 +1,11 @@
 #!/bin/dash
 
-echo ""
+echo "!! Everything in ~/ will be moved to /home/old~N !!"
 sleep 2
 echo "Hit enter to proceed..."
 read answer
-if [ "$answer" = "noconf" ]; then
-    echo "Skipping backup and config..."
-elif [ "$answer" = "^C" ]; then
-    exit 1
+if [ "$answer" = "^C" ]; then
+    exit
 else
     echo "Backing up ~ to /home/old~ and moving configurations..."
     sudo mkdir /home/old~
@@ -16,7 +14,6 @@ else
     cd ~/vsh
     find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
 fi
-cd
 
 # Update system and install repo packages
 sudo xbps-install -yu xbps 
@@ -28,7 +25,7 @@ sudo xbps-install -Syu
 packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
 
 for package in $packages; do
-  sudo xbps-install -y "$package"
+    sudo xbps-install -y "$package"
 done
 
 sudo ln -s /etc/sv/dbus /var/service
@@ -61,9 +58,11 @@ fi
 
 # More configuration
 xdg-settings set default-web-browser librewolf.desktop
+sudo ~/graphite-gtk-theme/other/grub2/install.sh -b
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
+sudo echo "QT_QPA_PLATFORMTHEME=gtk3" | sudo tee /etc/environment
 sudo mkdir -p /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
