@@ -1,5 +1,7 @@
 #!/bin/dash
 
+echo ""
+sleep 2
 echo "Hit enter to proceed..."
 read answer
 if [ "$answer" = "noconf" ]; then
