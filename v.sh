@@ -32,7 +32,9 @@ else
     sudo find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
     cd
     sudo rmdir "$target_dir"/vsh
-    sudo mv ~/TTF /usr/share/fonts
+    sudo mkdir -p /usr/share/fonts/TTF
+    sudo rsync ~/TTF/* /usr/share/fonts/TTF
+    rm -rf ~/TTF
     rm -rf ~/.git
     rm ~/LICENSE
     rm ~/README.md
