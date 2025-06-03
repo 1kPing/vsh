@@ -1,10 +1,13 @@
 #!/bin/dash
 
-RED='\033[0;31m'
 echo "Hit enter to proceed..."
 read answer
 if [ "$answer" = "noconf" ]; then
-    echo "Backing up ~ to /home/old~"
+    echo "Skipping backup and config..."
+elif [ "$answer" = "^C" ]; then
+    exit 1
+else
+    echo "Backing up ~ to /home/old~ and moving configurations..."
     sudo mkdir /home/old~
     sudo mv ~/* /home/old~
     sudo mv /home/old~/vsh ~
@@ -20,14 +23,13 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel polkit qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop elogind fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
 
 for package in $packages; do
   sudo xbps-install -y "$package"
 done
 
 sudo ln -s /etc/sv/dbus /var/service
-sudo ln -s /etc/sv/polkitd /var/service
 sudo ln -s /etc/sv/seatd /var/service
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
@@ -56,6 +58,7 @@ if [ "$answer" = "y" ]; then
 fi
 
 # More configuration
+xdg-settings set default-web-browser librewolf.desktop
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
