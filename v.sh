@@ -1,18 +1,40 @@
 #!/bin/dash
 
-echo "!! Everything in ~/ will be moved to /home/old~N !!"
-sleep 2
+trap 'exit 1' INT
+
+if [ ! -d "~/vsh" ]; then
+    echo "Error: vsh directory not found in ~ ; Move it there and try again."
+    exit 1
+fi
+
+echo "!! Everything currently in ~ will be moved to /home/old~N !!"
+sleep 1
 echo "Hit enter to proceed..."
 read answer
 if [ "$answer" = "^C" ]; then
-    exit
+    exit 1
 else
-    echo "Backing up ~ to /home/old~ and moving configurations..."
-    sudo mkdir /home/old~
-    sudo mv ~/* /home/old~
-    sudo mv /home/old~/vsh ~
-    cd ~/vsh
-    find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
+    echo "Backing up ~ to an available /home/old~N directory and moving configurations..."
+    
+    base_dir="/home/old~"
+    target_dir="$base_dir"
+    counter=2
+    
+    while [ -d "$target_dir" ]; do
+        target_dir="${base_dir}${counter}"
+        counter=$((counter + 1))
+    done
+    
+    sudo mkdir "$target_dir"
+    cd
+    sudo find . -maxdepth 1 -mindepth 1 -exec mv -f {} "$target_dir" \;
+    cd "$target_dir"/vsh
+    sudo find . -maxdepth 1 -mindepth 1 -exec mv -f {} ~ \;
+    cd
+    sudo rmdir "$target_dir"/vsh
+    rm -rf ~/.git
+    rm ~/LICENSE
+    rm ~/README.md
 fi
 
 # Update system and install repo packages
@@ -56,25 +78,22 @@ if [ "$answer" = "y" ]; then
     sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit nvidia nvidia-libs-32bit linux-firmware-nvidia
 fi
 
-# More configuration
 xdg-settings set default-web-browser librewolf.desktop
+
 sudo ~/graphite-gtk-theme/other/grub2/install.sh -b
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
 sudo echo "QT_QPA_PLATFORMTHEME=gtk3" | sudo tee /etc/environment
+
 sudo mkdir -p /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 echo "autospawn = no" | sudo tee /etc/pulse/client.conf
-sudo usermod -aG _seatd $USER
 
-# Clean up
-rm -rf ~/.git
-rm -r ~/vsh
 rm -r ~/graphite-gtk-theme
-rm ~/LICENSE
-rm ~/README.md
 rm ~/v.sh
+
+sudo xbps-install -Syu
 
 echo "finished, reboot your computer"
