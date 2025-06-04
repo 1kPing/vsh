@@ -1,5 +1,11 @@
 local awful = require("awful")
 local gears = require("gears")
+local layouts = {
+    awful.layout.suit.tile,
+    awful.layout.suit.floating,
+}
+
+awful.layout.set(awful.layout.suit.tile)
 
 tags = {
     names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
@@ -165,19 +171,6 @@ globalkeys = gears.table.join(
 
 root.keys(globalkeys)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 awful.spawn.with_shell("hyprpaper &")
 awful.spawn.with_shell("waybar &")
 awful.spawn.with_shell("pipewire &")
@@ -190,6 +183,16 @@ awful.spawn.with_shell("eww daemon &")
 awful.spawn.with_shell("librewolf --new-instance &")
 client.connect_signal("manage", function (c)
     if c.class == "LibreWolf" then
-        c:move_to_tag(tags[3])  -- Assuming tags[3] corresponds to workspace 3
+        c:move_to_tag(tags[3])
     end
 end)
+
+export XDG_SESSION_TYPE=x11
+export SDL_VIDEODRIVER=x11
+export QT_QPA_PLATFORM=xcb
+export XCURSOR_THEME=Bibata-Original-Classic
+export XCURSOR_SIZE=16
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __GL_GSYNC_ALLOWED=1
+export __GL_VRR_ALLOWED=0
