@@ -45,13 +45,17 @@ sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-n
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 
-packages="NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire awesome blender btop dunst fastfetch font-awesome galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent rofi sassc sddm starship steam ufw wev wine wine-gecko wine-mono yazi zsh"
+packages="libxcb-devel pam-devel zig NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire awesome blender brightnessctl btop dunst fastfetch font-awesome galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf libxcb mpv neovim nwg-look pam pavucontrol pipewire pipewire-devel qbittorrent rofi sassc starship steam ufw wev wine wine-gecko wine-mono xorg xauth yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"
 done
 
 sudo ln -s /etc/sv/dbus /var/service
+cd ly
+sudo zig build installexe -Dinit_system=runit
+sudo ln -s /etc/sv/ly /var/service/
+sudo rm /var/service/agetty-tty2
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
 sudo mv ~/binaries/* /bin
