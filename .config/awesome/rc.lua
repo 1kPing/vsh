@@ -1,11 +1,44 @@
+local awful = require("awful")
+
 terminal = "alacritty"
-file_manager = "yazi"
-editor = "nvim"
+file_manager = "terminal -e yazi"
+editor = "terminal -e nvim"
+
+modkey = "Mod4"
+
+globalkeys = gears.table.join(
+
+    awful.key({ modkey }, "Return", function () awful.spawn("terminal") end,
+              {description = "open a terminal", group = "launcher"}),
+
+    awful.key({ modkey }, "f", function () awful.spawn("file_manager") end,
+              {description = "open file manager", group = "launcher"}),
+
+    awful.key({ modkey }, "e", function () awful.spawn("editor") end,
+              {description = "open file manager", group = "launcher"}),
+
+    awful.key({ modkey }, "space", function () awful.spawn("rofi --show drun") end,
+              {description = "run rofi", group = "launcher"})
+
+    awful.key({ modkey }, "Escape", awesome.quit,
+              {description = "exit awesome", group = "awesome"}),
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+)
+
+root.keys(globalkeys)
 
 
 
