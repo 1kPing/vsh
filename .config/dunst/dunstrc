@@ -1,0 +1,32 @@
+[global]
+    font = Caskaydia Cove Nerd Font
+    sort = yes
+    newest_first = yes
+    layer = top
+    origin = top-right
+    offset = 15x15
+    width = 200
+    height = 70
+    padding = 0
+    horizontal_padding = 15
+    corner_radius = 12
+    enable_icons = true
+    icon_size = 64
+
+[urgency_low]
+    background = "#000000"
+    frame_color = "#ffffff"
+    frame_width = 2
+    timeout = 7
+
+[urgency_normal]
+    background = "#000000"
+    frame_color = "#ffffff"
+    frame_width = 2
+    timeout = 7
+
+[urgency_critical]
+    background = "#000000"
+    frame_color = "#ffffff"
+    frame_width = 2
+    timeout = 0
