@@ -47,7 +47,7 @@ echo "repository=https://github.com/index-0/librewolf-void/releases/latest/downl
 sudo xbps-install -Syu
 
 # Install packages
-packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop fastfetch font-awesome foot galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc seatd starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
+packages="NetworkManager PrismLauncher Signal-Desktop alsa-pipewire awesome blender btop fastfetch font-awesome galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mako mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent sassc st starship steam ufw wev wine wine-gecko wine-mono wofi xscreensaver yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"
