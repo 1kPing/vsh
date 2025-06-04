@@ -1,0 +1,82 @@
+@define-color text #777777;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #000000;
+@define-color mantle #181825;
+@define-color crust #11111b;
+
+/* Global Font */
+configuration {
+    font: "Caskaydia Cove Nerd Font 18";
+}
+
+/* Window */
+window {
+    margin: 0px;
+    padding: 10px;
+    border: 2px solid #ffeeff;
+    border-radius: 8px;
+    background-color: @base;
+}
+
+/* Main Box */
+mainbox {
+    margin: 5px;
+    padding: 10px;
+    border: 0px;
+    background-color: @base;
+}
+
+/* Listview (Outer Box/Scroll) */
+listview {
+    margin: 5px;
+    padding: 10px;
+    border: 0px;
+    background-color: @base;
+}
+
+/* Input */
+entry {
+    margin: 5px 20px;
+    padding: 10px;
+    border: 0px;
+    border-radius: 0.1em;
+    text-color: @text;
+    background-color: @base;
+}
+
+entry:selected {
+    border: 4px solid #ff0000;
+}
+
+/* Text */
+element-text {
+    margin: 5px;
+    border: 0px;
+    text-color: @text;
+}
+
+/* Entry */
+element {
+    background-color: @base;
+}
+
+/* Selected Entry */
+element selected {
+    border: 0.11em solid #ffffff;
+}
+
+element-text selected {
+    text-color: #ffffff;
+}
+
+/* Drop Active */
+element selected.urgent {
+    background-color: #ff2222;
+}
