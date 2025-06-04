@@ -1,11 +1,25 @@
 local awful = require("awful")
 local gears = require("gears")
+local beautiful = require("beautiful")
+
 local layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
 }
 
+beautiful.useless_gap = 0
+awful.layout.set(awful.layout.suit.dwindle)
 awful.layout.set(awful.layout.suit.tile)
+
+client.connect_signal("manage", function(c)
+    c.border_width = 0
+    c.border_color = beautiful.border_normal
+end)
+
+beautiful.border_normal = "#ffffff77"
+beautiful.border_focus = "#ffffffff"
+
+awful.client.setmaster(1)
 
 tags = {
     names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
