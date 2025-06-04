@@ -20,9 +20,61 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "space", function () awful.spawn("rofi --show drun") end,
               {description = "run rofi", group = "launcher"})
 
+    awful.key({ modkey }, "s", function () awful.spawn("librewolf") end,
+              {description = "open librewolf", group = "launcher"}),
+
+    awful.key({ modkey }, "d", function () awful.spawn("flatpak run com.discordapp.Discord") end,
+              {description = "open discord in flatpak", group = "launcher"}),
+
+    awful.key({ modkey }, "g", function () awful.spawn("github") end,
+              {description = "open github desktop app", group = "launcher"}),
+
+    awful.key({ modkey }, "p", function () awful.spawn("prismlauncher") end,
+              {description = "open prismlauncher", group = "launcher"}),
+
+    awful.key({ modkey }, "b", function () awful.spawn("terminal -e btop") end,
+              {description = "open btop in terminal", group = "launcher"}),
+
+    awful.key({ modkey }, "a", function () awful.spawn("alarm-clock-applet -s") end,
+              {description = "stop alarms", group = "launcher"}),
+
+    awful.key({ modkey }, "F1", function () 
+        awful.spawn("pkill librewolf") 
+    end,
+    {description = "kill all librewolf instances", group = "client"}),
+
+    awful.key({ modkey }, "F2", function () 
+        awful.spawn("pkill Discord") 
+    end,
+    {description = "kill all discord instances", group = "client"}),
+
+    awful.key({ modkey }, "F3", function () 
+        awful.spawn("pkill steam") 
+    end,
+    {description = "kill all steam instances", group = "client"}),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     awful.key({ modkey }, "Escape", awesome.quit,
               {description = "exit awesome", group = "awesome"}),
 
+    awful.key({ modkey }, "c", function () 
+        local c = client.focus
+        if c then c:kill() end 
+    end,
+    {description = "kill active window", group = "client"}),
 
 
 
