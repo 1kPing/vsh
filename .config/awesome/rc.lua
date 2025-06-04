@@ -1,10 +1,42 @@
 local awful = require("awful")
+local gears = require("gears")
+
+tags = {
+    names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+    layout = { 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile, 
+        awful.layout.suit.tile 
+    }
+}
+
+for s = 1, screen.count() do
+    tags[s] = awful.tag(tags.names, s, tags.layout)
+end
 
 terminal = "alacritty"
 file_manager = "terminal -e yazi"
 editor = "terminal -e nvim"
 
 modkey = "Mod4"
+
+root.buttons(awful.util.table.join(
+    awful.button({ modkey }, 1, function (c)
+        c:activate { context = "mouse_click" }
+        awful.mouse.client.move(c)
+    end),
+
+    awful.button({ modkey }, 3, function (c)
+        c:activate { context = "mouse_click" }
+        awful.mouse.client.resize(c)
+    end)
+))
 
 globalkeys = gears.table.join(
 
@@ -18,7 +50,7 @@ globalkeys = gears.table.join(
               {description = "open file manager", group = "launcher"}),
 
     awful.key({ modkey }, "space", function () awful.spawn("rofi --show drun") end,
-              {description = "run rofi", group = "launcher"})
+              {description = "run rofi", group = "launcher"}),
 
     awful.key({ modkey }, "s", function () awful.spawn("librewolf") end,
               {description = "open librewolf", group = "launcher"}),
@@ -38,6 +70,21 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "a", function () awful.spawn("alarm-clock-applet -s") end,
               {description = "stop alarms", group = "launcher"}),
 
+    awful.key({ "Mod1" }, "g", function ()
+        awful.spawn("galculator", { floating = true })
+    end,
+    {description = "open galculator as floating", group = "launcher"}),
+
+    awful.key({ modkey }, "Print", function () 
+        awful.spawn("scrot") 
+    end,
+    {description = "take a screenshot", group = "launcher"}),
+
+    awful.key({ modkey }, "\\", function () 
+        awful.spawn("i3lock") 
+    end,
+    {description = "lock screen", group = "awesome"}),
+
     awful.key({ modkey }, "F1", function () 
         awful.spawn("pkill librewolf") 
     end,
@@ -52,42 +99,68 @@ globalkeys = gears.table.join(
         awful.spawn("pkill steam") 
     end,
     {description = "kill all steam instances", group = "client"}),
+    
+    awful.key({ modkey }, "Down", function () awful.client.focus.bydirection("down") end,
+              {description = "focus window below", group = "client"}),
+    
+    awful.key({ modkey }, "Up", function () awful.client.focus.bydirection("up") end,
+              {description = "focus window above", group = "client"}),
+    
+    awful.key({ modkey }, "Left", function () awful.client.focus.bydirection("left") end,
+              {description = "focus window to the left", group = "client"}),
+    
+    awful.key({ modkey }, "Right", function () awful.client.focus.bydirection("right") end,
+              {description = "focus window to the right", group = "client"}),
+    
+    awful.key({ modkey }, "j", function () awful.client.focus.bydirection("down") end,
+              {description = "focus window below", group = "client"}),
+    
+    awful.key({ modkey }, "k", function () awful.client.focus.bydirection("up") end,
+              {description = "focus window above", group = "client"}),
+    
+    awful.key({ modkey }, "h", function () awful.client.focus.bydirection("left") end,
+              {description = "focus window to the left", group = "client"}),
+    
+    awful.key({ modkey }, "l", function () awful.client.focus.bydirection("right") end,
+              {description = "focus window to the right", group = "client"}),
 
+    for i = 1, 9 do
+        awful.key({ modkey }, tostring(i), function () 
+            local tag = awful.tag.gettags(1)[i] 
+            if tag then 
+                awful.tag.viewonly(tag) 
+            end 
+        end,
+        {description = "switch to workspace " .. i, group = "tag"})
+    end,
 
-
-
-
-
-
-
-
-
-
-
-
-
+    for i = 1, 9 do
+        awful.key({ modkey, "Shift" }, tostring(i), function () 
+            local tag = awful.tag.gettags(1)[i] 
+            if tag then 
+                awful.client.movetotag(tag) 
+            end 
+        end,
+        {description = "move window to workspace " .. i, group = "tag"})
+    end,
 
     awful.key({ modkey }, "Escape", awesome.quit,
               {description = "exit awesome", group = "awesome"}),
+
+    globalkeys,
+    awful.key({ "Mod1" }, "f", function ()
+        local c = client.focus
+        if c then
+            c.floating = not c.floating
+        end
+    end,
+    {description = "toggle floating for the active window", group = "client"}),
 
     awful.key({ modkey }, "c", function () 
         local c = client.focus
         if c then c:kill() end 
     end,
     {description = "kill active window", group = "client"}),
-
-
-
-
-
-
-
-
-
-
-
-
-
 )
 
 root.keys(globalkeys)
