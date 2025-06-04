@@ -40,13 +40,11 @@ else
     rm ~/README.md
 fi
 
-# Update system and install repo packages
 sudo xbps-install -yu xbps 
 sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-nonfree
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 
-# Install packages
 packages="NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire awesome blender btop dunst fastfetch font-awesome galculator gimp git gnome-keyring gnome-themes-extra gtk-engine-murrine imv libreoffice librewolf mpv neovim nwg-look pavucontrol pipewire pipewire-devel qbittorrent rofi sassc starship steam ufw wev wine wine-gecko wine-mono yazi zsh"
 
 for package in $packages; do
@@ -57,14 +55,7 @@ sudo ln -s /etc/sv/dbus /var/service
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
 sudo mv ~/binaries/* /bin
-mv ~/GithubDesktop* /bin/github
-
-echo "Do you want to install hypr stuff? (y/n)"
-read answer
-if [ "$answer" = "y" ]; then
-    echo "repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc" | sudo tee /etc/xbps.d/hyprland-mirror.conf
-    sudo xbps-install -Syu hyprland hyprland-protocols hyprlock hyprpaper xdg-desktop-portal-hyprland
-fi
+sudo mv ~/GithubDesktop* /bin/github
 
 echo "Do you want to install discord with flatpak? (y/n)"
 read answer
@@ -96,6 +87,7 @@ sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 echo "autospawn = no" | sudo tee /etc/pulse/client.conf
 
 rm -r ~/graphite-gtk-theme
+rmdir ~/binaries
 rm ~/v.sh
 
 sudo xbps-install -Syu
