@@ -29,8 +29,8 @@ else
     sudo rmdir "$target_dir"/vsh
     sudo mkdir -p /usr/share/fonts/TTF
     sudo mv -f ~/TTF/* /usr/share/fonts/TTF
-    rm -rf ~/TTF
     rm -rf ~/.git
+    rmdir ~/TTF
     rm ~/LICENSE
     rm ~/README.md
 fi
@@ -50,7 +50,7 @@ sudo ln -s /etc/sv/dbus /var/service
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
 sudo mv ~/binaries/* /bin
-sudo mv ~/GithubDesktop* /bin/github
+sudo mv ~/./GithubDesktop* /bin/github
 
 echo "Do you want to install discord with flatpak? (y/n)"
 read answer
