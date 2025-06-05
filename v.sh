@@ -40,7 +40,7 @@ sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-n
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 
-packages="NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice librewolf mpv neovim nwg-look pavucontrol pipewire qbittorrent rofi sassc scrot sddm starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils xorg-minimal yazi zsh"
+packages="librewolf NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice mpv neovim nwg-look pavucontrol pipewire qbittorrent rofi sassc scrot starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"
@@ -50,14 +50,24 @@ sudo ln -s /etc/sv/dbus /var/service
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kontr0x/github-desktop-install/main/installGitHubDesktop.sh)"
 sudo mv ~/binaries/* /usr/local/bin
+rmdir ~/binaries
 sudo mv ~/GitHubDesktop* /usr/local/bin/github
 
-echo "Do you want to install discord with flatpak? (y/n)"
+echo "Do you want to install flatpak? (y/n)"
 read answer
 if [ "$answer" = "y" ]; then
     sudo xbps-install -y flatpak
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    sudo flatpak install com.discordapp.Discord -y
+    echo "Do you want to install discord through flatpak? (y/n)"
+        read answer
+	if [ "$answer" = "y" ]; then
+            sudo flatpak install com.discordapp.Discord -y
+        fi
+    echo "Do you want to install ungoogled chromium through flatpak? (y/n)"
+        read answer
+        if [ "$answer" = "y" ]; then
+            flatpak install io.github.ungoogled_software.ungoogled_chromium -y
+        fi
 fi
 
 echo "Do you want to install nvidia stuff? (y/n)"
@@ -74,7 +84,7 @@ sudo ~/graphite-gtk-theme/other/grub2/install.sh -b
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'gruvbox-dark-icons-gtk'
-sudo echo "QT_QPA_PLATFORMTHEME=gtk3" | sudo tee /etc/environment
+sudo echo "QT_QPA_PLATFORMTHEME=gtk3" | sudo tee -a /etc/environment
 
 sudo mkdir -p /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
@@ -82,11 +92,14 @@ sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 echo "autospawn = no" | sudo tee /etc/pulse/client.conf
 
 rm -r ~/graphite-gtk-theme
-rmdir ~/binaries
-rm ~/v.sh
 
 sudo xbps-install -Syu
 
+echo "no wm, dm, or de was installed"
+
 echo "finished, reboot your computer"
 
-sudo ln -s /etc/sv/sddm /var/service
+rm ~/v.sh
+
+exit 0
+
