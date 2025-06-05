@@ -89,4 +89,4 @@ sudo xbps-install -Syu
 
 echo "finished, reboot your computer"
 
-sudo ln -s /etc/sv/lightdm /var/service
+sudo ln -s /etc/sv/sddm /var/service
