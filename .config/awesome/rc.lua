@@ -8,7 +8,6 @@ local layouts = {
 }
 
 beautiful.useless_gap = 0
-awful.layout.set(awful.layout.suit.dwindle)
 
 beautiful.border_normal = "#ffffff77"
 beautiful.border_focus = "#ffffffff"
@@ -17,8 +16,6 @@ client.connect_signal("manage", function(c)
     c.border_width = 0  -- Change to a positive value if you want borders
     c.border_color = beautiful.border_normal
 end)
-
-awful.client.setmaster(1)
 
 local tags = {
     names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
@@ -151,8 +148,6 @@ globalkeys = gears.table.join(
 
 root.keys(globalkeys)
 
-awful.spawn.with_shell("hyprpaper &")
-awful.spawn.with_shell("waybar &")
 awful.spawn.with_shell("pipewire &")
 awful.spawn.with_shell("pipewire-pulse &")
 awful.spawn.with_shell("wireplumber &")
