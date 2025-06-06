@@ -2,6 +2,8 @@
 
 trap 'exit 1' INT
 
+echo "!! This script is meant for a fresh install of Void Linux !!"
+sleep 1
 echo "!! Everything currently in ~ will be moved to /home/old~N !!"
 sleep 1
 echo "Hit enter to proceed..."
