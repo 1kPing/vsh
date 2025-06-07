@@ -78,8 +78,29 @@ if [ "$answer" = "y" ]; then
 fi
 
 xdg-settings set default-web-browser librewolf.desktop
-xdg-mime default imv.desktop image/*
-xdg-mime default mpv.desktop video/*
+xdg-mime default imv.desktop image/avif
+xdg-mime default imv.desktop image/gif
+xdg-mime default imv.desktop image/jpeg
+xdg-mime default imv.desktop image/jpg
+xdg-mime default imv.desktop image/png
+xdg-mime default imv.desktop image/svg
+xdg-mime default imv.desktop image/webp
+xdg-mime default mpv.desktop audio/cue
+xdg-mime default mpv.desktop audio/m4a
+xdg-mime default mpv.desktop audio/mp3
+xdg-mime default mpv.desktop audio/ogg
+xdg-mime default mpv.desktop audio/wav
+xdg-mime default mpv.desktop video/avi
+xdg-mime default mpv.desktop video/h264
+xdg-mime default mpv.desktop video/h265
+xdg-mime default mpv.desktop video/mkv
+xdg-mime default mpv.desktop video/mov
+xdg-mime default mpv.desktop video/mp4
+xdg-mime default mpv.desktop video/mpeg
+xdg-mime default mpv.desktop video/mpg
+xdg-mime default mpv.desktop video/mpv
+xdg-mime default mpv.desktop video/ogv
+xdg-mime default mpv.desktop video/webm
 
 sudo ~/graphite-gtk-theme/other/grub2/install.sh -b
 ~/graphite-gtk-theme/install.sh --tweaks rimless black
