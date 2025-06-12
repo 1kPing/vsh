@@ -5,8 +5,8 @@
          :halign "start"
          :valign "center"
     (eventbox :cursor "pointer"
-              :halign "center"                      
+              :halign "center"
               (button :class "app"
                       :onclick "apps/wofi.sh"
-                      "{!}"))))
+                      (image :path "apps/winux11v3x28.png")))))
 
