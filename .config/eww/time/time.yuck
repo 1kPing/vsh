@@ -1,0 +1,10 @@
+(defwidget time []
+    (box :class "time"
+         :orientation "h"
+         :space-evenly "false"
+         :halign "end"
+         :valign "center"
+    (label :class "hour" :text hour)
+    (label :class "colon" :text ":")
+    (label :class "minute" :text minute)))
+

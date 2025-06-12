@@ -1,0 +1,25 @@
+.workspaces {
+       background: $t7black;
+       padding: 5px;
+       border: 3px solid $t7white;
+       border-radius: 10px;
+
+    .icon {
+      &.current {color: $white;}
+    }
+
+    button {
+      &.empty {
+        color: $t2white;
+      }
+
+      &.occupied {
+        color: $t5white;
+      }
+
+      &.current {
+        color: $t7white;
+      }
+    }
+  }
+

@@ -42,7 +42,7 @@ sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-n
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 
-packages="librewolf neofetch gtk-layer-shell libdbusmenu NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice mpv neovim nwg-look pavucontrol pipewire qbittorrent rofi sassc scrot starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils yazi zsh"
+packages="librewolf neofetch gtk-layer-shell libdbusmenu socat NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice mpv neovim nwg-look pavucontrol pipewire qbittorrent rofi sassc scrot starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"

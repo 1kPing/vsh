@@ -1,0 +1,16 @@
+(include "bar/bar.yuck")
+(include "apps/apps.yuck")
+(include "workspaces/workspaces.yuck")
+(include "time/time.yuck")
+
+;; Time & Date ;;
+
+(defpoll hour :interval "1s" "date '+%H'")
+(defpoll minute :interval "1s" "date '+%M'")
+(defpoll date :interval "1h" "date '+%a, %d %B'")
+
+
+
+;; Workspaces ;;
+
+(deflisten hyprland `workspaces/workspaces.sh`)

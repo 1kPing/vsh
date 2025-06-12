@@ -1,0 +1,20 @@
+(defwidget bar []
+    (box :class "bar"
+         :orientation "h"
+         :space-evenly "true"
+         :valign "center"
+    (apps)
+    (workspaces)
+    (time)))
+
+(defwindow bar
+    :monitor "0"
+    :geometry (geometry :y "7"
+                        :width "99.3333333%"
+                        :height "32px"
+                        :anchor "bottom center")
+    :stacking "fg"
+    :exclusive "true"
+    :focusable "false"
+    (bar))
+

@@ -1,0 +1,11 @@
+@import "../colors.scss";
+
+* {
+   all: unset;
+   transition: 200ms;
+  }
+
+@import "bar/bar.scss";
+@import "workspaces/workspaces.scss";
+@import "apps/apps.scss";
+@import "time/time.scss";
