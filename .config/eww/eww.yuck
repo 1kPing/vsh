@@ -1,16 +1,29 @@
-(include "bar/bar.yuck")
-(include "apps/apps.yuck")
-(include "workspaces/workspaces.yuck")
-(include "time/time.yuck")
-
-;; Time & Date ;;
+(defvar image_size "28")
 
 (defpoll hour :interval "1s" "date '+%H'")
 (defpoll minute :interval "1s" "date '+%M'")
 (defpoll date :interval "1h" "date '+%a, %d %B'")
 
-
-
-;; Workspaces ;;
-
 (deflisten hyprland `workspaces/workspaces.sh`)
+
+(include "bar/bar.yuck")
+
+(include "start/start.yuck")
+
+(include "apps/apps.yuck")
+(include "apps/app/librewolf.yuck")
+(include "apps/app/steam.yuck")
+(include "apps/app/discord.yuck")
+(include "apps/app/signal-desktop.yuck")
+(include "apps/app/foot-btop.yuck")
+(include "apps/app/foot-nvim.yuck")
+(include "apps/app/pcmanfm.yuck")
+(include "apps/app/ungoogled-chromium.yuck")
+(include "apps/app/prismlauncher.yuck")
+
+(include "workspaces/workspaces.yuck")
+
+(include "date/date.yuck")
+
+(include "time/time.yuck")
+

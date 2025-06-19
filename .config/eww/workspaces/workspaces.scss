@@ -5,7 +5,7 @@
        border-radius: 10px;
 
     .icon {
-      &.current {color: $white;}
+      &.current {color: $t9white;}
     }
 
     button {
@@ -18,7 +18,7 @@
       }
 
       &.current {
-        color: $t7white;
+        color: $t9white;
       }
     }
   }

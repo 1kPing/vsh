@@ -1,7 +1,21 @@
-.apps {
-       background: $t7black;
-       border: 2px solid $white;
-       border-radius: 4px;
+.lindow {
+         background: $t7black;
+         border: 2px solid $t7white;
+         border-radius: 4px;
 }
 
+.revealer {
+           background: $t7black;
+           border-radius: 10px;
+}
+
+.greater {
+          color: $t9white;
+          font-family: Iosevka;
+}
+
+.apps {
+       background: $t7black;
+       border-radius: 10px;
+}
 

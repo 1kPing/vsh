@@ -1,4 +1,4 @@
-eval "$(starship init zsh)"
+eval "$(starship init bash)"
 
 [[ -o interactive ]] || return
 

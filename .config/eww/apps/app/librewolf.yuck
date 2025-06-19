@@ -1,0 +1,7 @@
+(defwidget librewolf []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec librewolf"
+                      :onmiddleclick "killall librewolf"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/librewolf.svg" :image-width image_size :image-height image_size))))
+

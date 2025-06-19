@@ -2,10 +2,11 @@
 
 * {
    all: unset;
-   transition: 200ms;
+   transition: all 0.3s ease;
+   font-weight: Bold;
   }
 
 @import "bar/bar.scss";
-@import "workspaces/workspaces.scss";
 @import "apps/apps.scss";
+@import "workspaces/workspaces.scss";
 @import "time/time.scss";

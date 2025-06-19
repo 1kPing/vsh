@@ -1,0 +1,7 @@
+(defwidget discord []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec discord"
+                      :onmiddleclick "killall Discord"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/discord.svg" :image-width image_size :image-height image_size))))
+

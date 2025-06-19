@@ -1,0 +1,6 @@
+(defwidget ungoogled-chromium []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec 'flatpak run io.github.ungoogled_software.ungoogled_chromium'"
+                      :onmiddleclick "killall ungoogled-chromium"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/chromium.svg" :image-width image_size :image-height image_size))))

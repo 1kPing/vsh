@@ -20,3 +20,4 @@ alias y='yazi'
 alias sy='sudo yazi'
 alias e='nvim'
 alias se='sudo nvim'
+

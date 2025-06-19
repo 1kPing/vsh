@@ -1,0 +1,7 @@
+(defwidget signal-desktop []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec signal-desktop"
+                      :onmiddleclick "killall signal-desktop"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/signal-desktop.svg" :image-width image_size :image-height image_size))))
+

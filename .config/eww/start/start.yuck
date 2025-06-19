@@ -1,0 +1,16 @@
+(defwidget start []
+    (box :orientation "h"
+         :space-evenly "false"
+         :halign "start"
+         :valign "center"
+         :spacing "14" 
+         (box :class "lindow"
+              (eventbox :cursor "pointer"
+                        :halign "start"
+                        (button :onclick "hyprctl dispatch exec 'wofi --show drun -I'"
+                                :onmiddleclick "killall wofi"
+                                (image :path "icons/lindow.svg"
+                                       :image-width image_size
+                                       :image-height image_size))))
+         (apps)))
+

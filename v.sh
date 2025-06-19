@@ -42,7 +42,7 @@ sudo xbps-install -Syu void-repo-multilib void-repo-nonfree void-repo-multilib-n
 echo "repository=https://github.com/index-0/librewolf-void/releases/latest/download/" | sudo tee /etc/xbps.d/librewolf-mirror.conf
 sudo xbps-install -Syu
 
-packages="librewolf neofetch gtk-layer-shell libdbusmenu socat NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice mpv neovim nwg-look pavucontrol pcmanfm-qt pipewire qbittorrent rofi sassc scrot starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils yazi zsh"
+packages="librewolf neofetch gtk-layer-shell libdbusmenu sof-firmware socat NetworkManager PrismLauncher Signal-Desktop alacritty alsa-pipewire blender btop dunst fastfetch font-awesome galculator gimp gnome-keyring gnome-themes-extra gtk-engine-murrine i3lock imv libreoffice mpv neovim nwg-look pavucontrol pcmanfm-qt pipewire qbittorrent rofi sassc scrot starship steam ufw unclutter-xfixes wine wine-gecko wine-mono xclip xdg-utils yazi zsh"
 
 for package in $packages; do
     sudo xbps-install -y "$package"
@@ -116,7 +116,8 @@ sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 echo "autospawn = no" | sudo tee /etc/pulse/client.conf
 
-sudo xbps-install -Syu
+echo "vm.swappiness = 1" | sudo tee /etc/sysctl.conf
+sudo sysctl -p
 
 echo "no wm, dm, or de was installed"
 

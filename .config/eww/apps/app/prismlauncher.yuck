@@ -1,0 +1,6 @@
+(defwidget prismlauncher []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec prismlauncher"
+                      :onmiddleclick "killall prismlauncher"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/prismlauncher.svg" :image-width image_size :image-height image_size))))

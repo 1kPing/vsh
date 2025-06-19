@@ -1,0 +1,7 @@
+(defwidget foot-nvim []
+    (eventbox :cursor "pointer"
+              (button :class "app"
+                      :onclick "hyprctl dispatch exec 'foot nvim'"
+                      :onmiddleclick "killall nvim"
+                      (image :path "../../.icons/Gruvbox-Plus-Dark/apps/scalable/nvim.svg" :image-width image_size :image-height image_size))))
+

@@ -3,14 +3,13 @@
          :orientation "h"
          :space-evenly "true"
          :valign "center"
-    (apps)
+    (start)
     (workspaces)
     (time)))
 
 (defwindow bar
     :monitor "0"
-    :geometry (geometry :y "7"
-                        :width "99.3333333%"
+    :geometry (geometry :width "100%"
                         :height "32px"
                         :anchor "bottom center")
     :stacking "fg"
